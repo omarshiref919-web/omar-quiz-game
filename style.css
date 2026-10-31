@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #111116;
+    --card: #1d1c25;
+    --surface: #282631;
+    --primary: #a78bfa;
+    --secondary: #fb923c;
+    --text: #f5f3ff;
+    --muted: #aaa6b8;
+    --border: rgba(255, 255, 255, 0.09);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(124, 58, 237, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(249, 115, 22, 0.10),
+            transparent 35%
+        ),
+        var(--background);
+}
+
+/* Main Card */
+
+.quiz-container {
+    width: 100%;
+    max-width: 540px;
+    padding: 42px 36px;
+
+    background: rgba(29, 28, 37, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    animation: cardEnter 0.8s ease both;
+}
+
+/* Heading */
+
+h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 38px;
+
+    background: linear-gradient(
+        110deg,
+        #c4b5fd,
+        #a78bfa,
+        #fb923c
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Question */
+
+#question {
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 28px;
+}
+
+/* Answer Buttons */
+
+#answers {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+#answers button {
+    width: 100%;
+    padding: 17px 20px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+
+    cursor: pointer;
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#answers button:hover:not(:disabled) {
+    background: rgba(167, 139, 250, 0.13);
+    border-color: var(--primary);
+    transform: translateX(5px);
+
+    box-shadow: 0 5px 20px rgba(167, 139, 250, 0.08);
+}
+
+#answers button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+#answers button:focus-visible,
+#nextButton:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 4px;
+}
+
+#answers button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Result Message */
+
+#answers p {
+    min-height: 28px;
+    margin-top: 15px;
+
+    color: var(--secondary);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+
+    animation: fadeIn 0.35s ease;
+}
+
+/* Next Button */
+
+#nextButton {
+    width: 100%;
+    margin-top: 28px;
+    padding: 16px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: linear-gradient(
+        110deg,
+        #8b5cf6,
+        #a78bfa
+    );
+
+    color: white;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+
+    transition: all 0.3s ease;
+}
+
+#nextButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.35);
+}
+
+#nextButton:active {
+    transform: scale(0.98);
+}
+
+/* Animations */
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+    }
+
+    .quiz-container {
+        padding: 30px 22px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 27px;
+        margin-bottom: 30px;
+    }
+
+    #question {
+        font-size: 18px;
+    }
+
+    #answers button {
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
