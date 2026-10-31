@@ -10,7 +10,7 @@ answersList.forEach(function(answer) {
     document.createElement("button")
     answerButton.textContent=answer;
     answerButton.onclick=function(){
-        if(answer==="ciro"){
+        if(answer==="Ciro"){
             result.textContent="Correct Answer!";
         }else{result.textContent="Incorrect"
         }let allButtons =
