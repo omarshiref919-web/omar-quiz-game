@@ -189,6 +189,38 @@ startbtn.addEventListener("click",
         QUIZ.style.display="block";
         STARTQUIZ.style.display="none";
 
+
+        Question.textContent="";
+        answerContainer.textContent="";
+        selectedAnswer="";
+        num=1;
+        currentQuestion=0;
+        correctanswer=0;
+
+
+        Question.textContent=questions[currentQuestion].question;
+        questionnum.textContent="Question"+num
+
+        questions[currentQuestion].answers.forEach(function(answer){
+            let answerbtn=document.createElement("button");
+            answerbtn.textContent=answer;
+           answerbtn.addEventListener("click",
+                function(){
+                    selectedAnswer=answer;
+
+                    answerContainer.querySelectorAll("button").forEach(function(allbtn){
+                        allbtn.classList.remove("selected")
+                    })
+                    answerbtn.classList.add("selected");
+                    
+                }
+            )
+            answerContainer.appendChild(answerbtn)
+        })
+       
+
+
+
     }
 )
 
@@ -211,9 +243,10 @@ againbtn.addEventListener("click",
         correctanswer=0;
         num=1
         currentQuestion=0;
-
-
         selectedAnswer=""
+
+
+
         Question.textContent=questions[currentQuestion].question;
 questionnum.textContent="Question"+num;
 
@@ -221,22 +254,22 @@ questionnum.textContent="Question"+num;
 
 
 questions[currentQuestion].answers.forEach(function(answer){
-let answersbtn=document.createElement("button");
-answersbtn.textContent=answer;
-answersbtn.addEventListener("click",
+let answerbtn=document.createElement("button");
+answerbtn.textContent=answer;
+answerbtn.addEventListener("click",
     function(){
     selectedAnswer=answer;
 
     answerContainer.querySelectorAll("button").forEach(function(allbtn){
     allbtn.classList.remove("selected");
     })
-    answersbtn.classList.add("selected");
+    answerbtn.classList.add("selected");
    
         
 
     }
 )
-answerContainer.appendChild(answersbtn);
+answerContainer.appendChild(answerbtn);
 
 })
 
